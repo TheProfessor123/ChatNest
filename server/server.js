@@ -15,6 +15,16 @@ const PORT = process.env.PORT || 3000;
 app.use(cors({origin: '*'}));
 app.use(express.json());
 
+// for monitoring in UptimeRobot 
+app.head('/', (req, res) => {
+    res.status(200).end();
+});
+
+// for testing in browser
+app.get('/', (req, res) => {
+res.status(200).send('Server is running!');
+});
+
 const upload = multer();
 
 app.post('/token', (req, res) => {
